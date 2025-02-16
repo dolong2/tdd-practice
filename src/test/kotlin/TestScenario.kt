@@ -13,4 +13,15 @@ class TestScenario {
         val result = gameService.checkAnswer(setOf(1, 2, 3))
         assertEquals(result, true)
     }
+
+    @Test
+    @DisplayName("오답인 경우")
+    fun noAnswerTest() {
+        val ballNumbers = BallNumbers(setOf(BallNumber(1), BallNumber(2), BallNumber(3)))
+        val game = Game(ballNumbers)
+        val gameService = GameService(mutableListOf(game))
+
+        val result = gameService.checkAnswer(setOf(3, 2, 1))
+        assertEquals(result, false)
+    }
 }
